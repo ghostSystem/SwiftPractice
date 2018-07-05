@@ -28,7 +28,7 @@
                                 <rect key="frame" x="66" y="217" width="243" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXf-by-xY1">
                                 <rect key="frame" x="97" y="318" width="180" height="30"/>
@@ -55,6 +55,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="passwordtextField" destination="Y6f-Ls-A2Y" id="v8E-ka-VPa"/>
+                        <outlet property="usernameTextField" destination="09i-M7-zr2" id="c3s-Tj-xP1"/>
                         <segue destination="o8j-oi-soO" kind="presentation" identifier="authenticationSegue" id="HTB-FY-bqG"/>
                     </connections>
                 </viewController>
@@ -71,7 +73,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Srl-Pf-y3R">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemCell" id="Srl-Pf-y3R">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Srl-Pf-y3R" id="gxa-fM-k31">
@@ -85,10 +87,12 @@
                             <outlet property="delegate" destination="o8j-oi-soO" id="ZaW-wh-HA6"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sTe-Fn-bzn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="777" y="134"/>
+            <point key="canvasLocation" x="776.79999999999995" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>
