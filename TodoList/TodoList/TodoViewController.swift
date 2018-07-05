@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var todoList: [String] = ["Do Laundry", "Buy Grocery", "Car Servicing"]
+    //var todoList: [String] = ["Do Laundry", "Buy Grocery", "Car Servicing"]
     var valueToPass: String!
+    var todoList: [NSManagedObject] = []
+    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,36 +24,33 @@ class TodoViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Do any additional setup after loading the view.
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.delegate = self
-        tableView.dataSource = self
+        //tableView.delegate = self
+        //tableView.dataSource = self
 
     }
     
-    @IBAction func addTodoItemClicked(_ sender: Any) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        let alertController = UIAlertController(title: "Add TODO", message: "Please enter your TODO Item !", preferredStyle: .alert)
-        
-        let confirmAction = UIAlertAction(title: "Add", style: .default) { (_) in
-            if let todoTextField = alertController.textFields?[0] {
-                if(todoTextField.text != "") {
-                    self.todoList.append(todoTextField.text!)
-                    self.tableView.reloadData()
-                }
-            }
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
         
-        alertController.addTextField { (textField) in
-            textField.placeholder = "todo item"
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "TodoItem")
+        
+        do {
+            todoList = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
         }
-        
-        alertController.addAction(confirmAction)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
-        
     }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.todoList.count
@@ -60,7 +60,9 @@ class TodoViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let cell:UITableViewCell = (self.tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell?)!
         
-        cell.textLabel?.text = self.todoList[indexPath.row]
+        //cell.textLabel?.text = self.todoList[indexPath.row]
+        let todoItem = todoList[indexPath.row]
+        cell.textLabel?.text = todoItem.value(forKeyPath: "name") as? String;
         return cell
     }
     
@@ -73,7 +75,7 @@ class TodoViewController: UIViewController, UITableViewDelegate, UITableViewData
         let indexPath = tableView.indexPathForSelectedRow!
         let currentCell = tableView.cellForRow(at: indexPath)! as UITableViewCell
         self.valueToPass = currentCell.textLabel?.text
-        
+        print("Value To pass on row selection \(self.valueToPass)")
         self.performSegue(withIdentifier: "cellData", sender: self)
     }
     
@@ -92,6 +94,57 @@ class TodoViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    @IBAction func addTodoItemClicked(_ sender: Any) {
+        
+        let alertController = UIAlertController(title: "Add TODO", message: "Please enter your TODO Item !", preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: "Add", style: .default) { (_) in
+            if let todoTextField = alertController.textFields?[0] {
+                if(todoTextField.text != "") {
+                    self.save(name: todoTextField.text!)
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "todo item"
+        }
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+        
+    }
     
+    func save(name: String) {
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        let entity =
+            NSEntityDescription.entity(forEntityName: "TodoItem",
+                                       in: managedContext)!
+        
+        let todoItem = NSManagedObject(entity: entity,
+                                       insertInto: managedContext)
+        
+        todoItem.setValue(name, forKeyPath: "name")
+        
+        do {
+            try managedContext.save()
+            todoList.append(todoItem)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
 
 }
