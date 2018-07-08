@@ -710,36 +710,81 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="szG-XC-f1n">
-                                <rect key="frame" x="43" y="658" width="805" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="enter exact process name" drawsBackground="YES" id="wUu-kk-fnA">
-                                    <font key="font" metaFont="system"/>
+                                <rect key="frame" x="43" y="658" width="458" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="enter exact process name" bezelStyle="round" id="wUu-kk-fnA">
+                                    <font key="font" metaFont="system" size="14"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SLG-M0-TTZ">
-                                <rect key="frame" x="877" y="651" width="96" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="GVu-bE-8Tv"/>
-                                </constraints>
+                                <rect key="frame" x="875" y="651" width="100" height="32"/>
                                 <buttonCell key="cell" type="push" title="Compute" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="we5-76-zVR">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="system" size="14"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="computeClicked:" target="XfG-lQ-9wD" id="kFG-mO-2Dc"/>
                                 </connections>
                             </button>
+                            <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="7SW-Ie-dpH">
+                                <rect key="frame" x="43" y="631" width="924" height="20"/>
+                            </progressIndicator>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XOl-5l-Itl">
+                                <rect key="frame" x="560" y="657" width="130" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="aSQ-o9-DV6"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="enter interval" bezelStyle="round" id="7KB-kB-3dC">
+                                    <font key="font" metaFont="system" size="14"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UF9-fv-sEC">
+                                <rect key="frame" x="702" y="657" width="130" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="uAW-xT-PP0"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="enter duration" bezelStyle="round" id="djE-iN-Nar">
+                                    <font key="font" metaFont="system" size="14"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dKb-ik-eI9">
+                                <rect key="frame" x="43" y="125" width="926" height="478"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="478" id="ATg-i8-MEL"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="XQT-Bc-MCz"/>
+                            </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="SLG-M0-TTZ" firstAttribute="leading" secondItem="szG-XC-f1n" secondAttribute="trailing" constant="35" id="DVQ-pt-eYI"/>
-                            <constraint firstItem="szG-XC-f1n" firstAttribute="centerY" secondItem="SLG-M0-TTZ" secondAttribute="centerY" id="MCq-7W-rBP"/>
-                            <constraint firstItem="szG-XC-f1n" firstAttribute="bottom" secondItem="SLG-M0-TTZ" secondAttribute="bottom" id="euc-vN-jx8"/>
-                            <constraint firstItem="szG-XC-f1n" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="gbT-R9-mb1"/>
-                            <constraint firstAttribute="trailing" secondItem="SLG-M0-TTZ" secondAttribute="trailing" constant="33" id="jHm-6S-CxV"/>
-                            <constraint firstItem="szG-XC-f1n" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="43" id="sEW-XQ-HvP"/>
+                            <constraint firstItem="dKb-ik-eI9" firstAttribute="top" secondItem="7SW-Ie-dpH" secondAttribute="bottom" constant="29" id="2FD-DQ-Cpu"/>
+                            <constraint firstItem="UF9-fv-sEC" firstAttribute="leading" secondItem="XOl-5l-Itl" secondAttribute="trailing" constant="12" id="B35-6w-NRw"/>
+                            <constraint firstItem="szG-XC-f1n" firstAttribute="leading" secondItem="7SW-Ie-dpH" secondAttribute="leading" id="B4B-if-xlT"/>
+                            <constraint firstItem="szG-XC-f1n" firstAttribute="baseline" secondItem="SLG-M0-TTZ" secondAttribute="baseline" id="Cgo-LA-fdj"/>
+                            <constraint firstItem="szG-XC-f1n" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="43" id="Jqu-1R-428"/>
+                            <constraint firstItem="SLG-M0-TTZ" firstAttribute="leading" secondItem="UF9-fv-sEC" secondAttribute="trailing" constant="49" id="Ju2-4t-QaD"/>
+                            <constraint firstItem="XOl-5l-Itl" firstAttribute="leading" secondItem="szG-XC-f1n" secondAttribute="trailing" constant="59" id="NLM-8S-yQo"/>
+                            <constraint firstItem="SLG-M0-TTZ" firstAttribute="trailing" secondItem="dKb-ik-eI9" secondAttribute="trailing" id="Pdx-ik-NBD"/>
+                            <constraint firstItem="7SW-Ie-dpH" firstAttribute="leading" secondItem="dKb-ik-eI9" secondAttribute="leading" id="QeK-5V-wa9"/>
+                            <constraint firstItem="7SW-Ie-dpH" firstAttribute="top" secondItem="szG-XC-f1n" secondAttribute="bottom" constant="8" symbolic="YES" id="YHB-ny-r6e"/>
+                            <constraint firstAttribute="trailing" secondItem="7SW-Ie-dpH" secondAttribute="trailing" constant="33" id="an9-u3-wV0"/>
+                            <constraint firstItem="szG-XC-f1n" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="dbu-kk-i3g"/>
+                            <constraint firstAttribute="trailing" secondItem="SLG-M0-TTZ" secondAttribute="trailing" constant="31" id="lIf-Af-b69"/>
+                            <constraint firstItem="XOl-5l-Itl" firstAttribute="baseline" secondItem="UF9-fv-sEC" secondAttribute="baseline" id="rcA-q5-EBO"/>
+                            <constraint firstItem="UF9-fv-sEC" firstAttribute="top" secondItem="SLG-M0-TTZ" secondAttribute="top" id="y9b-tb-qSq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="plotView" destination="dKb-ik-eI9" id="Xwt-a6-cQH"/>
+                        <outlet property="processDuration" destination="UF9-fv-sEC" id="hHW-Om-ysG"/>
+                        <outlet property="processInterval" destination="XOl-5l-Itl" id="Ypv-0D-NAB"/>
+                        <outlet property="processName" destination="szG-XC-f1n" id="w8Q-kH-3cz"/>
+                        <outlet property="progressBar" destination="7SW-Ie-dpH" id="0MU-ds-smN"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
