@@ -12,6 +12,7 @@ struct ProcessDetails {
     var name: String!
     var interval: String!
     var duration: String!
+    var processId: String!
 }
 
 class ProcessListViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, DataSendDelegate {
@@ -19,8 +20,7 @@ class ProcessListViewController: NSViewController, NSTableViewDataSource, NSTabl
     var processData = [ProcessDetails]()
     
     @IBOutlet weak var tableView:NSTableView!
-    
-    var tableViewData = ["Spotify", "Safari"]
+        
     
     var processName: String = ""
     
@@ -31,9 +31,6 @@ class ProcessListViewController: NSViewController, NSTableViewDataSource, NSTabl
         self.tableView.dataSource = self
         self.tableView.headerView = nil
         self.tableView.gridStyleMask = .solidHorizontalGridLineMask
-        
-        self.tableView.reloadData()
-        
     }
     
     override func viewWillAppear() {
@@ -42,18 +39,18 @@ class ProcessListViewController: NSViewController, NSTableViewDataSource, NSTabl
         preferredContentSize = NSSize(width: 375, height: 600)
     }
     
-    func processData(processName: String, processInterval: String, processDuration: String) {
+    func processData(processName: String, processInterval: String, processDuration: String, processId: String) {
         
-        print("Received Data: PName = \(processName), Interval = \(processInterval), Duration = \(processDuration)")
+        print("Received Data: PName = \(processName), Interval = \(processInterval), Duration = \(processDuration), processId = \(processId)")
         
-        let dataObject = ProcessDetails(name: processName, interval: processInterval, duration: processDuration)
+        let dataObject = ProcessDetails(name: processName, interval: processInterval, duration: processDuration, processId: processId)
         processData.append(dataObject)
-        
-        self.tableView.reloadData()
+        self.tableView.reloadData(forRowIndexes: [self.processData.count], columnIndexes: [0])
+        //self.tableView.reloadData()
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return processData.count
+        return self.processData.count
     }
     
     
@@ -65,6 +62,27 @@ class ProcessListViewController: NSViewController, NSTableViewDataSource, NSTabl
         result.processTitle.stringValue = pData.name
         result.processInterval.stringValue = pData.interval
         result.processDuration.stringValue = pData.duration
+        result.processID.stringValue = pData.processId
+        DispatchQueue.global(qos: .background).async {
+            DispatchQueue.main.async {
+                // Setting up the Progress Bar
+                var startValue = 0.0
+                let maxValue = Double(pData.duration)!
+                result.progressBar.minValue = startValue
+                result.progressBar.maxValue = Double(pData.duration)!
+                result.progressBar.isIndeterminate = false
+                DispatchQueue.global(qos: .background).async {
+                    while startValue != maxValue + 1.0 {
+                        DispatchQueue.main.async {
+                            result.progressBar.doubleValue = startValue
+                        }
+                        sleep(1)
+                        startValue = startValue + 1.0
+                    }
+                }
+            }
+            self.startComputation(processId: pData.processId, processInterval: pData.interval, processDuration: pData.duration)
+        }
         
         return result
     }
@@ -82,6 +100,30 @@ class ProcessListViewController: NSViewController, NSTableViewDataSource, NSTabl
                 self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "viewPlot"), sender: self)
             }
         }
+    }
+    
+    
+    func startComputation(processId: String, processInterval: String, processDuration: String) {
+        
+        print("Computation Started")
+        let process = Process()
+        process.launchPath = "/anaconda3/bin/psrecord"
+        var arguments: [String] = []
+        arguments.append(processId)
+        arguments.append("--log")
+        arguments.append("/Users/astitvnagpal/Desktop/activity.log")
+        arguments.append("--plot")
+        arguments.append("/Users/astitvnagpal/Desktop/plot.png")
+        arguments.append("--interval")
+        arguments.append(processInterval)
+        arguments.append("--duration")
+        arguments.append(processDuration)
+        process.arguments = arguments
+        
+        process.launch()
+        process.waitUntilExit()
+        print("Computation Ended")
+        
     }
     
     

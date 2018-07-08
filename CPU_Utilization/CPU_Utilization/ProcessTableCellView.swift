@@ -10,13 +10,13 @@ import Cocoa
 
 class ProcessTableCellView: NSTableCellView {
     
-    
     @IBOutlet weak var processTitle: NSTextField!
-    
     @IBOutlet weak var processInterval: NSTextField!
-    
     @IBOutlet weak var processDuration: NSTextField!
     @IBOutlet weak var processCPUPercentage: NSTextField!
+    @IBOutlet weak var progressBar: NSProgressIndicator!
+    @IBOutlet weak var processID: NSTextField!
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
