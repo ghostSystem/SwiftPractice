@@ -43,6 +43,7 @@ class ViewController: NSViewController {
         super.viewWillAppear()
 
         //preferredContentSize = NSSize(width: 1000, height: 700)
+        self.processName.stringValue = self.representedObject as! String
     }
     
     
@@ -101,7 +102,7 @@ class ViewController: NSViewController {
         var arguments: [String] = []
         arguments.append(self.processId)
         arguments.append("--log")
-        arguments.append("/Users/astitvnagpal/Desktop/activity.csv")
+        arguments.append("/Users/astitvnagpal/Desktop/activity.log")
         arguments.append("--plot")
         arguments.append("/Users/astitvnagpal/Desktop/plot.png")
         arguments.append("--interval")
@@ -208,6 +209,11 @@ class ViewController: NSViewController {
         alert.addButton(withTitle: "OK")
         alert.runModal()
     }
+    
+    @IBAction func dismissClicked(_ sender: Any) {
+        self.dismissViewController(self)
+    }
+    
 
 }
 

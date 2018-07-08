@@ -16,6 +16,8 @@
 		30EEEDEB20F1353B00143189 /* CPU_UtilizationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEEDEA20F1353B00143189 /* CPU_UtilizationUITests.swift */; };
 		30EEEDFB20F2171100143189 /* ProcessListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEEDFA20F2171100143189 /* ProcessListViewController.swift */; };
 		30EEEDFD20F21F7F00143189 /* ProcessTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEEDFC20F21F7F00143189 /* ProcessTableCellView.swift */; };
+		30EEEE2E20F26E8E00143189 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEEE2D20F26E8E00143189 /* DetailViewController.swift */; };
+		30EEEE3020F2833900143189 /* ProcessDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEEE2F20F2833900143189 /* ProcessDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		30EEEDEC20F1353B00143189 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30EEEDFA20F2171100143189 /* ProcessListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessListViewController.swift; sourceTree = "<group>"; };
 		30EEEDFC20F21F7F00143189 /* ProcessTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessTableCellView.swift; sourceTree = "<group>"; };
+		30EEEE2D20F26E8E00143189 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		30EEEE2F20F2833900143189 /* ProcessDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +109,10 @@
 				30EEEDC920F1353800143189 /* AppDelegate.swift */,
 				30EEEDCB20F1353800143189 /* ViewController.swift */,
 				30EEEDFA20F2171100143189 /* ProcessListViewController.swift */,
-				30EEEDFC20F21F7F00143189 /* ProcessTableCellView.swift */,
+				30EEEE2D20F26E8E00143189 /* DetailViewController.swift */,
+				30EEEE2F20F2833900143189 /* ProcessDetailsViewController.swift */,
 				30EEEDD020F1353B00143189 /* Assets.xcassets */,
+				30EEEDFC20F21F7F00143189 /* ProcessTableCellView.swift */,
 				30EEEDD220F1353B00143189 /* Main.storyboard */,
 				30EEEDD520F1353B00143189 /* Info.plist */,
 				30EEEDD620F1353B00143189 /* CPU_Utilization.entitlements */,
@@ -270,7 +276,9 @@
 			files = (
 				30EEEDFB20F2171100143189 /* ProcessListViewController.swift in Sources */,
 				30EEEDCC20F1353800143189 /* ViewController.swift in Sources */,
+				30EEEE3020F2833900143189 /* ProcessDetailsViewController.swift in Sources */,
 				30EEEDCA20F1353800143189 /* AppDelegate.swift in Sources */,
+				30EEEE2E20F26E8E00143189 /* DetailViewController.swift in Sources */,
 				30EEEDCF20F1353800143189 /* CPU_Utilization.xcdatamodeld in Sources */,
 				30EEEDFD20F21F7F00143189 /* ProcessTableCellView.swift in Sources */,
 			);
