@@ -101,7 +101,7 @@ class ViewController: NSViewController {
         var arguments: [String] = []
         arguments.append(self.processId)
         arguments.append("--log")
-        arguments.append("/Users/astitvnagpal/Desktop/activity.log")
+        arguments.append("/Users/astitvnagpal/Desktop/activity.csv")
         arguments.append("--plot")
         arguments.append("/Users/astitvnagpal/Desktop/plot.png")
         arguments.append("--interval")
